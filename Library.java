@@ -2,14 +2,49 @@
 import java.util.Scanner;
 
 public class Library {
+	public static int login() {
+        Scanner sc = new Scanner(System.in);
+        String username, password;
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Enter username: ");
+            username = sc.nextLine();
+            if (username.equals("admin")) {
+                for (int j = 0; j < 3; j++) {
+                    System.out.print("Enter password: ");
+                    password = sc.nextLine();
 
+                    if (password.equals("admin")) {
+                        System.out.println("Authentication successful. ");
+                        return 1;
+                    } else if (j == 2) {
+                        System.out.println("Maximum attempts reached. Exiting the code.");
+                        return 0;
+                    } else {
+                        System.out.println("Authentication failed. Please try again.");
+                    }
+                }
+            } else if (i == 2) {
+                System.out.println("Maximum attempts reached. Exiting the code.");
+                return 0;
+            } else {
+                System.out.println("Authentication failed. Please try again.");
+            }
+        }
+		return 0;
+	}
 	public static void main(String[] args)
-	{
+	{	
+
 		Scanner input = new Scanner(System.in);
 
 		// Displaying menu
 		System.out.println(
 			"********************Welcome to the SIT Library!********************");
+			int result = login();
+        if (result == 0) {
+            System.out.println("Authentication failed. Exiting...");
+            return;
+		}
 		System.out.println(
 			"				Select From The Following Options:			 ");
 		System.out.println(
